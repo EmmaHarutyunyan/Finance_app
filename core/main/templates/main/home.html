@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="video-wrapper">
+    <video id="custom-video" autoplay muted loop>
+        <source src="{% static 'video/welcome.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="play-button" class="play-button"></button>
+</div>
+<section class="rates-graphic fade-in">
+    <div class="container">
+        <h3>Live Exchange Rates</h3>
+        <div id="loading-spinner" class="loading-spinner" style="display:none;">
+            <div class="spinner"></div>
+        </div>
+        <canvas id="exchangeRatesChart"></canvas>
+    </div>
+</section>
+<div class="video-wrapper second-video">
+    <video id="custom-video-2" autoplay muted loop>
+        <source src="{% static 'video/vid.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="play-button-2" class="play-button"></button>
+</div>
+
+<section class="exchange-link fade-in">
+    <div class="container">
+        <p class="exchange-text">Stay up to date with the latest exchange rates!</p>
+        <a href="{% url 'exchange' %}" class="btn-exchange">Go to Exchange Page</a>
+    </div>
+</section>
+
+<section class="image-gallery fade-in">
+    <div class="container">
+        <div class="gallery-item">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+        </div>
+    </div>
+</section>
+
+<section class="finance-trends fade-in">
+    <div class="container">
+        <h3>Finance Trends</h3>
+        <div class="trends-cards">
+            <div class="trends-card fade-in-card">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/solid/currency-dollar.svg" alt="coin icon">
+                </div>
+                <h4>Trending Currencies</h4>
+                <p>Explore the top-performing currencies right now!</p>
+                <a href="{% url 'trending_currencies' %}" class="btn-learn-more">Learn More</a>
+            </div>
+            <div class="trends-card fade-in-card">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/solid/trending-up.svg" alt="stock icon">
+                </div>
+                <h4>Trending Stocks</h4>
+                <p>Investors are closely watching these stocks!</p>
+                <a href="{% url 'trending_stocks' %}" class="btn-learn-more">Explore Stocks</a>
+            </div>
+            <div class="trends-card fade-in-card">
+                <div class="card-icon">
+                    <img src="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/solid/lock-closed.svg" alt="crypto icon">
+                </div>
+                <h4>Trending Cryptos</h4>
+                <p>See which cryptocurrencies are surging!</p>
+                <a href="{% url 'trending_cryptos' %}" class="btn-learn-more">Trade Crypto</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- Link to the external JS file -->
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

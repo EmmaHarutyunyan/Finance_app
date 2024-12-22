@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Trending Currencies | Finance Tracker{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/trendings.css' %}">
+
+<div class="container">
+    <h1 class="page-heading">Trending Currencies</h1>
+    <p class="page-description">Check out the top trending currencies and their rates!</p>
+
+    <div class="trending-container">
+        {% if trending_currencies %}
+        <ul class="trending-list">
+            {% for currency in trending_currencies %}
+                <li class="trending-item">
+                    <a href="#" class="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        {{ currency.name }} - ${{ currency.rate }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="no-data">No trending currencies available at the moment.</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="no-data">No trending currencies available at the moment.</p>
+        {% endif %}
+    </div>
+</div>
+
+<script src="{% static 'js/trendings.js' %}"></script>
+{% endblock %}

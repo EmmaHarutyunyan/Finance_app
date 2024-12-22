@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Trending Cryptocurrencies | Finance Tracker{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/trendings.css' %}">
+
+<div class="container">
+    <h1 class="page-heading">Trending Cryptocurrencies</h1>
+    <p class="page-description">See which cryptocurrencies are surging today!</p>
+
+    <div class="trending-container">
+        <ul class="crypto-list">
+            {% for crypto in cryptos %}
+                <li class="crypto-item">
+                    <a href="#" class="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        {{ crypto.name }} ({{ crypto.symbol | upper }}) - 1 {{ crypto.name }} = ${{ crypto.current_price }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="no-data">No trending cryptocurrencies available at the moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script src="{% static 'js/trendings.js' %}"></script>
+{% endblock %}

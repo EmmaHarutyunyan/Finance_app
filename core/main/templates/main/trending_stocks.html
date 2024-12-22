@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Trending Stocks | Finance Tracker{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/trendings.css' %}">
+
+<div class="container">
+    <h1 class="page-heading">Trending Stocks</h1>
+    <p class="page-description">Investors are closely watching these stocks!</p>
+
+    <div class="trending-container">
+        <ul class="crypto-list">
+            {% if stocks %}
+                {% for stock in stocks %}
+                    <li class="crypto-item">
+                        <a href="#" class="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            {{ stock.name }} - ${{ stock.price }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p class="no-data">No trending stocks available at the moment.</p>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+<script src="{% static 'js/trendings.js' %}"></script>
+{% endblock %}

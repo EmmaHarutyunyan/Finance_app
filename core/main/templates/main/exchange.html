@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Currency Exchange
+{% endblock %}
+
+{% block content %}
+<div class="exchange-container">
+    <h1 class="title">Currency Exchange</h1>
+    <div class="exchange-form">
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+            </div>
+            <div class="input-group">
+                <label for="from_currency">From Currency</label>
+                <select id="from_currency" name="from_currency" required>
+                    <option value="" disabled selected>Select From Currency</option>
+                    {% for currency, rate in currencies.items %}
+                        <option value="{{ currency }}">{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="to_currency">To Currency</label>
+                <select id="to_currency" name="to_currency" required>
+                    <option value="" disabled selected>Select To Currency</option>
+                    {% for currency, rate in currencies.items %}
+                        <option value="{{ currency }}">{{ currency }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Exchange</button>
+        </form>
+    </div>
+    {% if result %}
+        <div class="result-box">
+            <p>Exchange Result: <span>{{ result }}</span></p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
